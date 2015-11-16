@@ -28,4 +28,8 @@ class GridPoints {
     private boolean hasSameCoordinates() {
         return values.stream().anyMatch(one -> values.stream().filter(another -> another.hasSameCoordinatesWith(one)).count() != 1);
     }
+
+    int count() {
+        return values.size();
+    }
 }

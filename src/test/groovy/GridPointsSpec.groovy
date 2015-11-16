@@ -124,4 +124,13 @@ class GridPointsSpec extends Specification {
         expect:
         sut.connected() == false
     }
+
+    def 点を2つもつ格子点の数は2である() {
+        given:
+        def one = new GridPoint(3, 7)
+        def another = new GridPoint(4, 7)
+        def sut = new GridPoints(one, another);
+        expect:
+        sut.count() == 2
+    }
 }
