@@ -22,4 +22,24 @@ class GridPoint {
     private double distanceFrom(GridPoint other) {
         return Math.sqrt(Math.pow(this.x - other.x, 2) + Math.pow(this.y - other.y, 2));
     }
+
+    static private GridPoint nullObject = new NullGridPoint(0, 0);
+
+    static GridPoint nullGridPoint() {
+        return nullObject;
+    }
+
+    static class NullGridPoint extends GridPoint {
+        NullGridPoint(int x, int y) {
+            super(x, y);
+        }
+        @Override
+        boolean hasSameCoordinatesWith(GridPoint other) {
+            return false;
+        }
+        @Override
+        boolean isNeighborOf(GridPoint other) {
+            return false;
+        }
+    }
 }
