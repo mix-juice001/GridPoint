@@ -1,30 +1,31 @@
+import java.util.HashSet;
+import java.util.Set;
+
 class GridPoints {
-    private final GridPoint one;
-    private final GridPoint another;
-    private GridPoint theOther;
+
+    private Set<GridPoint> values = new HashSet<>();
 
     GridPoints(GridPoint one, GridPoint another) {
-        this(one, another, GridPoint.nullGridPoint());
+        values.add(one);
+        values.add(another);
     }
 
     GridPoints(GridPoint one, GridPoint another, GridPoint theOther) {
-        this.one = one;
-        this.another = another;
-        this.theOther = theOther;
+        values.add(one);
+        values.add(another);
+        values.add(theOther);
     }
 
     boolean contains(GridPoint target) {
-        return this.one.hasSameCoordinatesWith(target)
-                || this.another.hasSameCoordinatesWith(target)
-                || this.theOther.hasSameCoordinatesWith(target);
-
+        return values.stream().anyMatch(gridPoint -> gridPoint.hasSameCoordinatesWith(target));
     }
 
     boolean connected() {
-        if (theOther != GridPoint.nullGridPoint())
-            return (one.isNeighborOf(another) && one.isNeighborOf(theOther))
-                    || (another.isNeighborOf(one)) && another.isNeighborOf(theOther)
-                    || (theOther.isNeighborOf(one) && theOther.isNeighborOf(another));
-        return one.isNeighborOf(another);
+        if (hasSameCoordinates()) return false;
+        return values.stream().allMatch(one -> values.stream().anyMatch(another -> one.isNeighborOf(another)));
+    }
+
+    private boolean hasSameCoordinates() {
+        return values.stream().anyMatch(one -> values.stream().filter(another -> another.hasSameCoordinatesWith(one)).count() != 1);
     }
 }

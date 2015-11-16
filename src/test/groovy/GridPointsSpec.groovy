@@ -1,6 +1,6 @@
 import spock.lang.Specification
 
-class GridPointsSpec extends Specification{
+class GridPointsSpec extends Specification {
     def 格子点集合が指定した格子点を含む() {
         given:
         def one = new GridPoint(4, 7)
@@ -70,11 +70,55 @@ class GridPointsSpec extends Specification{
         sut.connected() == true
     }
 
-    def 点3つを含む格子点集合が連結していない() {
+    def 点3つを含む格子点集合が連結していない_1つも隣あっていない() {
         given:
         def one = new GridPoint(4, 7)
         def another = new GridPoint(3, 6)
         def theOther = new GridPoint(5, 9)
+
+        def sut = new GridPoints(one, another, theOther)
+        expect:
+        sut.connected() == false
+    }
+
+    def 点3つを含む格子点集合が連結していない_2点は隣あっている() {
+        given:
+        def one = new GridPoint(4, 7)
+        def another = new GridPoint(4, 6)
+        def theOther = new GridPoint(5, 9)
+
+        def sut = new GridPoints(one, another, theOther)
+        expect:
+        sut.connected() == false
+    }
+
+    def 点3つを含む格子点集合が連結していない_同じ点を持つ() {
+        given:
+        def one = new GridPoint(4, 7)
+        def another = new GridPoint(4, 7)
+        def theOther = new GridPoint(5, 9)
+
+        def sut = new GridPoints(one, another, theOther)
+        expect:
+        sut.connected() == false
+    }
+
+    def 点3つを含む格子点集合が連結していない_同じ点を持つ_残りの点とは隣() {
+        given:
+        def one = new GridPoint(4, 7)
+        def another = new GridPoint(4, 7)
+        def theOther = new GridPoint(5, 7)
+
+        def sut = new GridPoints(one, another, theOther)
+        expect:
+        sut.connected() == false
+    }
+
+    def 点3つを含む格子点集合が連結していない_3点が同じ点() {
+        given:
+        def one = new GridPoint(4, 7)
+        def another = new GridPoint(4, 7)
+        def theOther = new GridPoint(4, 7)
 
         def sut = new GridPoints(one, another, theOther)
         expect:
