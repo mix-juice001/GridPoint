@@ -280,4 +280,19 @@ class GridPointsSpec extends Specification {
         expect:
         sut.traversable() == false
     }
+
+    def 格子点集合が6つの点をもつ() {
+        given:
+        def one = new GridPoint(0, 0)
+        def two = new GridPoint(0, 1)
+        def three = new GridPoint(0, 2)
+        def four = new GridPoint(0, 3)
+        def five = new GridPoint(0, 4)
+        def six = new GridPoint(0, 5)
+
+        def sut = new GridPoints(one, two, three, four, five, six)
+        expect:
+        sut instanceof GridPoints
+        sut.count() == 6
+    }
 }

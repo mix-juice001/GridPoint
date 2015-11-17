@@ -5,22 +5,10 @@ class GridPoints {
 
     private Set<GridPoint> values = new HashSet<>();
 
-    GridPoints(GridPoint one, GridPoint another) {
-        values.add(one);
-        values.add(another);
-    }
-
-    GridPoints(GridPoint one, GridPoint another, GridPoint theOther) {
-        values.add(one);
-        values.add(another);
-        values.add(theOther);
-    }
-
-    GridPoints(GridPoint one, GridPoint another, GridPoint theOther, GridPoint fourth) {
-        values.add(one);
-        values.add(another);
-        values.add(theOther);
-        values.add(fourth);
+    GridPoints(GridPoint... gridPoints) {
+        for (GridPoint gp : gridPoints) {
+            values.add(gp);
+        }
     }
 
     boolean contains(GridPoint target) {
