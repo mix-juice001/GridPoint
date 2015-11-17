@@ -28,7 +28,7 @@ class GridPoints {
     }
 
     boolean connected() {
-        if (hasSameCoordinates()) return false;
+        if (containsSameCoordinates()) return false;
         return allGridPointHasNeighbor();
     }
 
@@ -40,11 +40,11 @@ class GridPoints {
         return values.stream().anyMatch(another -> one.isNeighborOf(another));
     }
 
-    private boolean hasSameCoordinates() {
-        return values.stream().anyMatch(one -> containsSameCoordinates(one));
+    private boolean containsSameCoordinates() {
+        return values.stream().anyMatch(one -> hasSameCoordinatesWith(one));
     }
 
-    private boolean containsSameCoordinates(GridPoint one) {
+    private boolean hasSameCoordinatesWith(GridPoint one) {
         return values.stream().filter(another -> another.hasSameCoordinatesWith(one)).count() != 1;
     }
 
