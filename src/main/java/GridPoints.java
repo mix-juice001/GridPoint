@@ -33,10 +33,10 @@ class GridPoints {
     }
 
     private boolean allGridPointHasNeighbor() {
-        return values.stream().allMatch(one -> hasNeighbor(one));
+        return values.stream().allMatch(one -> hasNeighborOf(one));
     }
 
-    private boolean hasNeighbor(GridPoint one) {
+    private boolean hasNeighborOf(GridPoint one) {
         return values.stream().anyMatch(another -> one.isNeighborOf(another));
     }
 
