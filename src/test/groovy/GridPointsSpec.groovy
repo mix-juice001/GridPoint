@@ -1,3 +1,4 @@
+import spock.lang.Ignore
 import spock.lang.Specification
 
 class GridPointsSpec extends Specification {
@@ -134,7 +135,7 @@ class GridPointsSpec extends Specification {
         sut.count() == 2
     }
 
-     def 点4つを含む格子点集合が指定した点を含む() {
+    def 点4つを含む格子点集合が指定した点を含む() {
         given:
         def one = new GridPoint(4, 7)
         def another = new GridPoint(3, 6)
@@ -206,5 +207,77 @@ class GridPointsSpec extends Specification {
         sut.connected() == false
     }
 
+    def 連結している点2つの格子点集合が一筆書きできる() {
+        given:
+        def one = new GridPoint(0, 0)
+        def another = new GridPoint(0, 1)
+        def sut = new GridPoints(one, another);
+        expect:
+        sut.traversable() == true
+    }
 
+    def 連結していない点2つの格子点集合は一筆書きできない() {
+        given:
+        def one = new GridPoint(0, 0)
+        def another = new GridPoint(0, 2)
+        def sut = new GridPoints(one, another);
+        expect:
+        sut.traversable() == false
+    }
+
+    def 連結している点3つの格子点集合が一筆書きできる() {
+        given:
+        def one = new GridPoint(0, 0)
+        def another = new GridPoint(0, 1)
+        def theOther = new GridPoint(1, 1)
+        def sut = new GridPoints(one, another, theOther);
+        expect:
+        sut.traversable() == true
+    }
+
+    def 連結していない点3つの格子点集合は一筆書きできない() {
+        given:
+        def one = new GridPoint(0, 0)
+        def another = new GridPoint(0, 2)
+        def theOther = new GridPoint(1, 1)
+        def sut = new GridPoints(one, another, theOther);
+        expect:
+        sut.traversable() == false
+    }
+
+    def 正方形の格子点集合は一筆書きできる() {
+        given:
+        def one = new GridPoint(0, 0)
+        def another = new GridPoint(0, 1)
+        def theOther = new GridPoint(1, 1)
+        def theFourth = new GridPoint(1, 0)
+
+        def sut = new GridPoints(one, another, theOther, theFourth)
+        expect:
+        sut.traversable() == true
+    }
+
+    def L字型の格子点集合は一筆書きできる() {
+        given:
+        def one = new GridPoint(0, 0)
+        def another = new GridPoint(0, 1)
+        def theOther = new GridPoint(0, 2)
+        def theFourth = new GridPoint(1, 0)
+
+        def sut = new GridPoints(one, another, theOther, theFourth)
+        expect:
+        sut.traversable() == true
+    }
+
+    def ト型の格子点集合は一筆書きできない() {
+        given:
+        def one = new GridPoint(0, 0)
+        def another = new GridPoint(0, 1)
+        def theOther = new GridPoint(0, 2)
+        def theFourth = new GridPoint(1, 1)
+
+        def sut = new GridPoints(one, another, theOther, theFourth)
+        expect:
+        sut.traversable() == false
+    }
 }

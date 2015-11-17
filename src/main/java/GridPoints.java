@@ -47,4 +47,16 @@ class GridPoints {
     int count() {
         return values.size();
     }
+
+    boolean traversable() {
+        return connected() && allGridPointHasLessThanThreeNeighbors();
+    }
+
+    private boolean allGridPointHasLessThanThreeNeighbors() {
+        return values.stream().allMatch(one -> countNeighbors(one) < 3);
+    }
+
+    private long countNeighbors(GridPoint target) {
+        return values.stream().filter(one -> one.isNeighborOf(target)).count();
+    }
 }
