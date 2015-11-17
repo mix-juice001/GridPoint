@@ -29,6 +29,10 @@ class GridPoints {
 
     boolean connected() {
         if (hasSameCoordinates()) return false;
+        return allGridPointHasNeighbor();
+    }
+
+    private boolean allGridPointHasNeighbor() {
         return values.stream().allMatch(one -> hasNeighbor(one));
     }
 
