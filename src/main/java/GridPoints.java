@@ -16,6 +16,13 @@ class GridPoints {
         values.add(theOther);
     }
 
+    GridPoints(GridPoint one, GridPoint another, GridPoint theOther, GridPoint fourth) {
+        values.add(one);
+        values.add(another);
+        values.add(theOther);
+        values.add(fourth);
+    }
+
     boolean contains(GridPoint target) {
         return values.stream().anyMatch(gridPoint -> gridPoint.hasSameCoordinatesWith(target));
     }

@@ -133,4 +133,78 @@ class GridPointsSpec extends Specification {
         expect:
         sut.count() == 2
     }
+
+     def 点4つを含む格子点集合が指定した点を含む() {
+        given:
+        def one = new GridPoint(4, 7)
+        def another = new GridPoint(3, 6)
+        def theOther = new GridPoint(2, 2)
+        def theFourth = new GridPoint(2, 1)
+        def sut = new GridPoints(one, another, theOther, theFourth)
+
+        expect:
+        sut.contains(new GridPoint(2, 1)) == true;
+    }
+
+    def 点4つを含む格子点集合が指定した点を含まない() {
+        given:
+        def one = new GridPoint(4, 7)
+        def another = new GridPoint(3, 6)
+        def theOther = new GridPoint(2, 2)
+        def theFourth = new GridPoint(2, 1)
+        def sut = new GridPoints(one, another, theOther, theFourth)
+
+        expect:
+        sut.contains(new GridPoint(2, 0)) == false;
+    }
+
+    def 正方形の格子点集合は連結している() {
+        given:
+        def one = new GridPoint(0, 0)
+        def another = new GridPoint(0, 1)
+        def theOther = new GridPoint(1, 1)
+        def theFourth = new GridPoint(1, 0)
+
+        def sut = new GridPoints(one, another, theOther, theFourth)
+        expect:
+        sut.connected() == true
+    }
+
+    def L字型の格子点集合は連結している() {
+        given:
+        def one = new GridPoint(0, 0)
+        def another = new GridPoint(0, 1)
+        def theOther = new GridPoint(0, 2)
+        def theFourth = new GridPoint(1, 0)
+
+        def sut = new GridPoints(one, another, theOther, theFourth)
+        expect:
+        sut.connected() == true
+    }
+
+    def ト型の格子点集合は連結している() {
+        given:
+        def one = new GridPoint(0, 0)
+        def another = new GridPoint(0, 1)
+        def theOther = new GridPoint(0, 2)
+        def theFourth = new GridPoint(1, 1)
+
+        def sut = new GridPoints(one, another, theOther, theFourth)
+        expect:
+        sut.connected() == true
+    }
+
+    def 点が重複している格子点集合は連結していない() {
+        given:
+        def one = new GridPoint(0, 0)
+        def another = new GridPoint(0, 1)
+        def theOther = new GridPoint(0, 2)
+        def theFourth = new GridPoint(0, 0)
+
+        def sut = new GridPoints(one, another, theOther, theFourth)
+        expect:
+        sut.connected() == false
+    }
+
+
 }
