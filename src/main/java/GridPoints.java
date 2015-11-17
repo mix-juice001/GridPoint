@@ -29,11 +29,19 @@ class GridPoints {
 
     boolean connected() {
         if (hasSameCoordinates()) return false;
-        return values.stream().allMatch(one -> values.stream().anyMatch(another -> one.isNeighborOf(another)));
+        return values.stream().allMatch(one -> hasNeighbor(one));
+    }
+
+    private boolean hasNeighbor(GridPoint one) {
+        return values.stream().anyMatch(another -> one.isNeighborOf(another));
     }
 
     private boolean hasSameCoordinates() {
-        return values.stream().anyMatch(one -> values.stream().filter(another -> another.hasSameCoordinatesWith(one)).count() != 1);
+        return values.stream().anyMatch(one -> containsSameCoordinates(one));
+    }
+
+    private boolean containsSameCoordinates(GridPoint one) {
+        return values.stream().filter(another -> another.hasSameCoordinatesWith(one)).count() != 1;
     }
 
     int count() {
