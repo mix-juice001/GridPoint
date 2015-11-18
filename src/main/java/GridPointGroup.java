@@ -24,14 +24,6 @@ class GridPointGroup {
         return values.stream().mapToLong(one -> countNeighborsOf(one)).sum() / 2;
     }
 
-    private boolean allGridPointsHaveNeighbor() {
-        return values.stream().allMatch(one -> hasNeighborOf(one));
-    }
-
-    private boolean hasNeighborOf(GridPoint one) {
-        return values.stream().anyMatch(another -> one.isNeighborOf(another));
-    }
-
     private boolean containsSameCoordinates() {
         return values.stream().anyMatch(one -> hasSameCoordinatesWith(one));
     }
