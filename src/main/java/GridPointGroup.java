@@ -17,7 +17,11 @@ class GridPointGroup {
 
     boolean connected() {
         if (containsSameCoordinates()) return false;
-        return allGridPointsHaveNeighbor();
+        return countNeighborsPair() >= this.count() - 1;
+    }
+
+    private long countNeighborsPair() {
+        return values.stream().mapToLong(one -> countNeighborsOf(one)).sum() / 2;
     }
 
     private boolean allGridPointsHaveNeighbor() {
