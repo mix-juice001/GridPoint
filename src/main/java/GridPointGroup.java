@@ -41,10 +41,14 @@ class GridPointGroup {
     }
 
     boolean traversable() {
-        return connected() && allGridPointHasLessThanThreeNeighbors();
+        return connected() && allGridPointsHaveOnlyEnterAndExit();
     }
 
-    private boolean allGridPointHasLessThanThreeNeighbors() {
+    private boolean allGridPointsHaveOnlyEnterAndExit() {
+        return allGridPointsHaveLessThanThreeNeighbors();
+    }
+
+    private boolean allGridPointsHaveLessThanThreeNeighbors() {
         return values.stream().allMatch(one -> countNeighborsOf(one) < 3);
     }
 
