@@ -1,11 +1,11 @@
 import java.util.HashSet;
 import java.util.Set;
 
-class GridPoints {
+class GridPointGroup {
 
     private Set<GridPoint> values = new HashSet<>();
 
-    GridPoints(GridPoint... gridPoints) {
+    GridPointGroup(GridPoint... gridPoints) {
         for (GridPoint gp : gridPoints) {
             values.add(gp);
         }

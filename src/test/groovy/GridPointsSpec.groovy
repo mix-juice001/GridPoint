@@ -1,4 +1,3 @@
-import spock.lang.Ignore
 import spock.lang.Specification
 
 class GridPointsSpec extends Specification {
@@ -6,7 +5,7 @@ class GridPointsSpec extends Specification {
         given:
         def one = new GridPoint(4, 7)
         def another = new GridPoint(3, 7)
-        def sut = new GridPoints(one, another)
+        def sut = new GridPointGroup(one, another)
         expect:
         sut.contains(new GridPoint(4, 7)) == true
     }
@@ -15,7 +14,7 @@ class GridPointsSpec extends Specification {
         given:
         def one = new GridPoint(4, 7)
         def another = new GridPoint(3, 7)
-        def sut = new GridPoints(one, another)
+        def sut = new GridPointGroup(one, another)
         expect:
         sut.contains(new GridPoint(10, 11)) == false
     }
@@ -24,7 +23,7 @@ class GridPointsSpec extends Specification {
         given:
         def one = new GridPoint(4, 7)
         def another = new GridPoint(3, 7)
-        def sut = new GridPoints(one, another)
+        def sut = new GridPointGroup(one, another)
         expect:
         sut.connected() == true
     }
@@ -33,7 +32,7 @@ class GridPointsSpec extends Specification {
         given:
         def one = new GridPoint(4, 7)
         def another = new GridPoint(3, 6)
-        def sut = new GridPoints(one, another)
+        def sut = new GridPointGroup(one, another)
         expect:
         sut.connected() == false
     }
@@ -43,7 +42,7 @@ class GridPointsSpec extends Specification {
         def one = new GridPoint(4, 7)
         def another = new GridPoint(3, 6)
         def theOther = new GridPoint(2, 2)
-        def sut = new GridPoints(one, another, theOther)
+        def sut = new GridPointGroup(one, another, theOther)
 
         expect:
         sut.contains(new GridPoint(2, 2)) == true;
@@ -54,7 +53,7 @@ class GridPointsSpec extends Specification {
         def one = new GridPoint(4, 7)
         def another = new GridPoint(3, 6)
         def theOther = new GridPoint(2, 2)
-        def sut = new GridPoints(one, another, theOther)
+        def sut = new GridPointGroup(one, another, theOther)
 
         expect:
         sut.contains(new GridPoint(2, 1)) == false;
@@ -66,7 +65,7 @@ class GridPointsSpec extends Specification {
         def another = new GridPoint(3, 6)
         def theOther = new GridPoint(3, 7)
 
-        def sut = new GridPoints(one, another, theOther)
+        def sut = new GridPointGroup(one, another, theOther)
         expect:
         sut.connected() == true
     }
@@ -77,7 +76,7 @@ class GridPointsSpec extends Specification {
         def another = new GridPoint(3, 6)
         def theOther = new GridPoint(5, 9)
 
-        def sut = new GridPoints(one, another, theOther)
+        def sut = new GridPointGroup(one, another, theOther)
         expect:
         sut.connected() == false
     }
@@ -88,7 +87,7 @@ class GridPointsSpec extends Specification {
         def another = new GridPoint(4, 6)
         def theOther = new GridPoint(5, 9)
 
-        def sut = new GridPoints(one, another, theOther)
+        def sut = new GridPointGroup(one, another, theOther)
         expect:
         sut.connected() == false
     }
@@ -99,7 +98,7 @@ class GridPointsSpec extends Specification {
         def another = new GridPoint(4, 7)
         def theOther = new GridPoint(5, 9)
 
-        def sut = new GridPoints(one, another, theOther)
+        def sut = new GridPointGroup(one, another, theOther)
         expect:
         sut.connected() == false
     }
@@ -110,7 +109,7 @@ class GridPointsSpec extends Specification {
         def another = new GridPoint(4, 7)
         def theOther = new GridPoint(5, 7)
 
-        def sut = new GridPoints(one, another, theOther)
+        def sut = new GridPointGroup(one, another, theOther)
         expect:
         sut.connected() == false
     }
@@ -121,7 +120,7 @@ class GridPointsSpec extends Specification {
         def another = new GridPoint(4, 7)
         def theOther = new GridPoint(4, 7)
 
-        def sut = new GridPoints(one, another, theOther)
+        def sut = new GridPointGroup(one, another, theOther)
         expect:
         sut.connected() == false
     }
@@ -130,7 +129,7 @@ class GridPointsSpec extends Specification {
         given:
         def one = new GridPoint(3, 7)
         def another = new GridPoint(4, 7)
-        def sut = new GridPoints(one, another);
+        def sut = new GridPointGroup(one, another);
         expect:
         sut.count() == 2
     }
@@ -141,7 +140,7 @@ class GridPointsSpec extends Specification {
         def another = new GridPoint(3, 6)
         def theOther = new GridPoint(2, 2)
         def theFourth = new GridPoint(2, 1)
-        def sut = new GridPoints(one, another, theOther, theFourth)
+        def sut = new GridPointGroup(one, another, theOther, theFourth)
 
         expect:
         sut.contains(new GridPoint(2, 1)) == true;
@@ -153,7 +152,7 @@ class GridPointsSpec extends Specification {
         def another = new GridPoint(3, 6)
         def theOther = new GridPoint(2, 2)
         def theFourth = new GridPoint(2, 1)
-        def sut = new GridPoints(one, another, theOther, theFourth)
+        def sut = new GridPointGroup(one, another, theOther, theFourth)
 
         expect:
         sut.contains(new GridPoint(2, 0)) == false;
@@ -166,7 +165,7 @@ class GridPointsSpec extends Specification {
         def theOther = new GridPoint(1, 1)
         def theFourth = new GridPoint(1, 0)
 
-        def sut = new GridPoints(one, another, theOther, theFourth)
+        def sut = new GridPointGroup(one, another, theOther, theFourth)
         expect:
         sut.connected() == true
     }
@@ -178,7 +177,7 @@ class GridPointsSpec extends Specification {
         def theOther = new GridPoint(0, 2)
         def theFourth = new GridPoint(1, 0)
 
-        def sut = new GridPoints(one, another, theOther, theFourth)
+        def sut = new GridPointGroup(one, another, theOther, theFourth)
         expect:
         sut.connected() == true
     }
@@ -190,7 +189,7 @@ class GridPointsSpec extends Specification {
         def theOther = new GridPoint(0, 2)
         def theFourth = new GridPoint(1, 1)
 
-        def sut = new GridPoints(one, another, theOther, theFourth)
+        def sut = new GridPointGroup(one, another, theOther, theFourth)
         expect:
         sut.connected() == true
     }
@@ -202,7 +201,7 @@ class GridPointsSpec extends Specification {
         def theOther = new GridPoint(0, 2)
         def theFourth = new GridPoint(0, 0)
 
-        def sut = new GridPoints(one, another, theOther, theFourth)
+        def sut = new GridPointGroup(one, another, theOther, theFourth)
         expect:
         sut.connected() == false
     }
@@ -211,7 +210,7 @@ class GridPointsSpec extends Specification {
         given:
         def one = new GridPoint(0, 0)
         def another = new GridPoint(0, 1)
-        def sut = new GridPoints(one, another);
+        def sut = new GridPointGroup(one, another);
         expect:
         sut.traversable() == true
     }
@@ -220,7 +219,7 @@ class GridPointsSpec extends Specification {
         given:
         def one = new GridPoint(0, 0)
         def another = new GridPoint(0, 2)
-        def sut = new GridPoints(one, another);
+        def sut = new GridPointGroup(one, another);
         expect:
         sut.traversable() == false
     }
@@ -230,7 +229,7 @@ class GridPointsSpec extends Specification {
         def one = new GridPoint(0, 0)
         def another = new GridPoint(0, 1)
         def theOther = new GridPoint(1, 1)
-        def sut = new GridPoints(one, another, theOther);
+        def sut = new GridPointGroup(one, another, theOther);
         expect:
         sut.traversable() == true
     }
@@ -240,7 +239,7 @@ class GridPointsSpec extends Specification {
         def one = new GridPoint(0, 0)
         def another = new GridPoint(0, 2)
         def theOther = new GridPoint(1, 1)
-        def sut = new GridPoints(one, another, theOther);
+        def sut = new GridPointGroup(one, another, theOther);
         expect:
         sut.traversable() == false
     }
@@ -252,7 +251,7 @@ class GridPointsSpec extends Specification {
         def theOther = new GridPoint(1, 1)
         def theFourth = new GridPoint(1, 0)
 
-        def sut = new GridPoints(one, another, theOther, theFourth)
+        def sut = new GridPointGroup(one, another, theOther, theFourth)
         expect:
         sut.traversable() == true
     }
@@ -264,7 +263,7 @@ class GridPointsSpec extends Specification {
         def theOther = new GridPoint(0, 2)
         def theFourth = new GridPoint(1, 0)
 
-        def sut = new GridPoints(one, another, theOther, theFourth)
+        def sut = new GridPointGroup(one, another, theOther, theFourth)
         expect:
         sut.traversable() == true
     }
@@ -276,7 +275,7 @@ class GridPointsSpec extends Specification {
         def theOther = new GridPoint(0, 2)
         def theFourth = new GridPoint(1, 1)
 
-        def sut = new GridPoints(one, another, theOther, theFourth)
+        def sut = new GridPointGroup(one, another, theOther, theFourth)
         expect:
         sut.traversable() == false
     }
@@ -290,9 +289,9 @@ class GridPointsSpec extends Specification {
         def five = new GridPoint(0, 4)
         def six = new GridPoint(0, 5)
 
-        def sut = new GridPoints(one, two, three, four, five, six)
+        def sut = new GridPointGroup(one, two, three, four, five, six)
         expect:
-        sut instanceof GridPoints
+        sut instanceof GridPointGroup
         sut.count() == 6
     }
 }
