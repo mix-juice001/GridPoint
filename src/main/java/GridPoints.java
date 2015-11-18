@@ -17,10 +17,10 @@ class GridPoints {
 
     boolean connected() {
         if (containsSameCoordinates()) return false;
-        return allGridPointHasNeighbor();
+        return allGridPointsHaveNeighbor();
     }
 
-    private boolean allGridPointHasNeighbor() {
+    private boolean allGridPointsHaveNeighbor() {
         return values.stream().allMatch(one -> hasNeighborOf(one));
     }
 
@@ -45,10 +45,10 @@ class GridPoints {
     }
 
     private boolean allGridPointHasLessThanThreeNeighbors() {
-        return values.stream().allMatch(one -> countNeighbors(one) < 3);
+        return values.stream().allMatch(one -> countNeighborsOf(one) < 3);
     }
 
-    private long countNeighbors(GridPoint target) {
+    private long countNeighborsOf(GridPoint target) {
         return values.stream().filter(one -> one.isNeighborOf(target)).count();
     }
 }
