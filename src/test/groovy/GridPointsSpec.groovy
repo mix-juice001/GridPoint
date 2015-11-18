@@ -206,6 +206,17 @@ class GridPointsSpec extends Specification {
         sut.connected() == false
     }
 
+    def 連結している2点が2つで構成されていて離れている格子点集合は連結していない() {
+        given:
+        def first = new GridPoint(0, 0)
+        def second = new GridPoint(1, 0)
+        def third = new GridPoint(0, 2)
+        def fourth = new GridPoint(1, 2)
+        def sut = new GridPointGroup(first, second, third, fourth)
+        expect:
+        sut.connected() == false
+    }
+
     def 連結している点2つの格子点集合が一筆書きできる() {
         given:
         def one = new GridPoint(0, 0)
