@@ -182,7 +182,7 @@ class GridPointsSpec extends Specification {
         sut.connected() == true
     }
 
-    def ト型の格子点集合は連結している() {
+    def T型の格子点集合は連結している() {
         given:
         def one = new GridPoint(0, 0)
         def another = new GridPoint(0, 1)
@@ -268,7 +268,7 @@ class GridPointsSpec extends Specification {
         sut.traversable() == true
     }
 
-    def ト型の格子点集合は一筆書きできない() {
+    def T型の格子点集合は一筆書きできない() {
         given:
         def one = new GridPoint(0, 0)
         def another = new GridPoint(0, 1)
