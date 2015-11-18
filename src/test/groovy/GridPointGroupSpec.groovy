@@ -1,6 +1,6 @@
 import spock.lang.Specification
 
-class GridPointsSpec extends Specification {
+class GridPointGroupSpec extends Specification {
     def 格子点集合が指定した格子点を含む() {
         given:
         def one = new GridPoint(4, 7)
