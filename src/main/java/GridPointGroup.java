@@ -1,14 +1,13 @@
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 class GridPointGroup {
 
     private Set<GridPoint> values = new HashSet<>();
 
     GridPointGroup(GridPoint... gridPoints) {
-        for (GridPoint gp : gridPoints) {
-            values.add(gp);
-        }
+        Stream.of(gridPoints).forEach(gridPoint -> values.add(gridPoint));
     }
 
     boolean contains(GridPoint target) {
