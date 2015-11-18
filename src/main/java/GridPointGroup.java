@@ -4,7 +4,7 @@ import java.util.stream.Stream;
 
 class GridPointGroup {
 
-    private Set<GridPoint> values = new HashSet<>();
+    final private Set<GridPoint> values = new HashSet<>();
 
     GridPointGroup(GridPoint... gridPoints) {
         Stream.of(gridPoints).forEach(gridPoint -> values.add(gridPoint));
