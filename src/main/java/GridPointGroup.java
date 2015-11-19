@@ -16,8 +16,26 @@ class GridPointGroup {
 
     boolean connected() {
         if (containsSameCoordinates()) return false;
-        return countNeighborsPair() >= this.count() - 1;
+        return countNeighborsPair() - countSquare()  >= count() - 1;
     }
+
+    private long countSquare() {
+        return values.stream().filter(gridPoint -> containsRight(gridPoint) && containsAbove(gridPoint) && containsRightAbove(gridPoint)).count();
+    }
+
+    private boolean containsRightAbove(GridPoint gridPoint) {
+        return contains(gridPoint.rightAboveOf());
+    }
+
+    private boolean containsAbove(GridPoint gridPoint) {
+        return contains(gridPoint.aboveOf());
+    }
+
+    private boolean containsRight(GridPoint gridPoint) {
+        return contains(gridPoint.rightOf());
+    }
+
+
 
     private long countNeighborsPair() {
         return values.stream().mapToLong(one -> countNeighborsOf(one)).sum() / 2;
