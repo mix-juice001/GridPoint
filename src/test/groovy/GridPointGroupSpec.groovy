@@ -305,4 +305,20 @@ class GridPointGroupSpec extends Specification {
         sut instanceof GridPointGroup
         sut.count() == 6
     }
+
+    def 離れている正方形2つの格子点集合は連結していない() {
+        given:
+        def one = new GridPoint(0, 0)
+        def two = new GridPoint(0, 1)
+        def three = new GridPoint(1, 1)
+        def four = new GridPoint(1, 0)
+        def five = new GridPoint(3, 0)
+        def six = new GridPoint(3, 1)
+        def seven = new GridPoint(4, 1)
+        def eight = new GridPoint(4, 0)
+
+        def sut = new GridPointGroup(one, two, three, four, five, six, seven, eight)
+        expect:
+        sut.connected() ==  false
+    }
 }
