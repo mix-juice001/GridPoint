@@ -338,4 +338,21 @@ class GridPointGroupSpec extends Specification {
         expect:
         sut.connected() ==  true
     }
+
+    def 田_型の格子点集合は一筆書きできる() {
+        given:
+        def one = new GridPoint(0, 0)
+        def two = new GridPoint(0, 1)
+        def three = new GridPoint(1, 1)
+        def four = new GridPoint(1, 0)
+        def five = new GridPoint(-1, 1)
+        def six = new GridPoint(-1, 0)
+        def seven = new GridPoint(-1, -1)
+        def eight = new GridPoint(0, -1)
+        def nine = new GridPoint(1, -1)
+
+        def sut = new GridPointGroup(one, two, three, four, five, six, seven, eight, nine)
+        expect:
+        sut.traversable() ==  true
+    }
 }
