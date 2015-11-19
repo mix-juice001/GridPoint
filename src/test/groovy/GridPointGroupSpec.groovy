@@ -322,7 +322,7 @@ class GridPointGroupSpec extends Specification {
         sut.connected() ==  false
     }
 
-    def 田_型の格子点集合は連結していない() {
+    def 田_型の格子点集合は連結している() {
         given:
         def one = new GridPoint(0, 0)
         def two = new GridPoint(0, 1)
