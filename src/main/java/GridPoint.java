@@ -34,4 +34,12 @@ class GridPoint {
     GridPoint rightAboveOf() {
         return new GridPoint(this.x + 1, this.y + 1);
     }
+
+    GridPoint leftOf() {
+        return new GridPoint(this.x -1, this.y);
+    }
+
+    GridPoint beneathOf() {
+        return new GridPoint(this.x, this.y -1);
+    }
 }

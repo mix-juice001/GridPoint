@@ -54,7 +54,25 @@ class GridPointGroup {
     }
 
     boolean traversable() {
-        return connected() && allGridPointsHaveOnlyEnterAndExit();
+        return connected() && allGridPointsHaveLessThanOneNeighborThatHaveOnlyOneNeighbor();
+    }
+
+    private boolean allGridPointsHaveLessThanOneNeighborThatHaveOnlyOneNeighbor() {
+        if (values.stream().anyMatch(one -> countNeighborsOnlyConnectedWith(one) >= 2)) return false;
+        return values.stream().filter(one -> countNeighborsOnlyConnectedWith(one) == 1).count() <= 2;
+    }
+
+    private int countNeighborsOnlyConnectedWith(GridPoint gridPoint) {
+        int countOfNeighborsOnlyConnectedWith = 0;
+        GridPoint right = gridPoint.rightOf();
+        GridPoint above = gridPoint.aboveOf();
+        GridPoint left = gridPoint.leftOf();
+        GridPoint beneath = gridPoint.beneathOf();
+        if (contains(right) && countNeighborsOf(right) == 1) countOfNeighborsOnlyConnectedWith++;
+        if (contains(above) && countNeighborsOf(above) == 1) countOfNeighborsOnlyConnectedWith++;
+        if (contains(left) && countNeighborsOf(left) == 1) countOfNeighborsOnlyConnectedWith++;
+        if (contains(beneath) && countNeighborsOf(beneath) == 1) countOfNeighborsOnlyConnectedWith++;
+        return countOfNeighborsOnlyConnectedWith;
     }
 
     private boolean allGridPointsHaveOnlyEnterAndExit() {
