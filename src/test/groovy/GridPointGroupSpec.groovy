@@ -356,6 +356,13 @@ class GridPointGroupSpec extends Specification {
         sut.traversable() ==  true
     }
 
+    /**
+     * こんな形は一筆書きできない
+     *      *
+     *   *  *
+     *   *  *
+     *   *
+     */
     def 格子点集合は一筆書きできない() {
         given:
         def one = new GridPoint(0, 0)
