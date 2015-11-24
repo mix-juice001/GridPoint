@@ -54,6 +54,7 @@ class GridPointGroup {
     }
 
     boolean traversable() {
+        if (count() == 3 && connected()) return true;
         return connected() && allGridPointsHaveLessThanOneNeighborThatHaveOnlyOneNeighbor();
     }
 
